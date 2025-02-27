@@ -16,34 +16,32 @@ public class AutoCompleteCommand {
      */
     @ShellMethod("Autocomplete given a query string and a set of all possible query strings.")
     public List<String> autocomplete(String queryString, List<String> possibleStrings) {
-//        System.out.println("Query string: " + queryString);
-//        System.out.println("Possible strings: " + possibleStrings);
-
         List<String> matchedStrings = new ArrayList<>();
-
-        boolean match = false;
         for (String possibleString : possibleStrings) {
             if (!possibleString.contains(queryString)) {
                 // not a match, possibleString must contain queryString
                 continue;
             }
-            for (int i = 0; i < queryString.length(); i++) {
-                char queryStringChar = queryString.charAt(i);
-                char possibleStringChar = possibleString.charAt(i);
-                if (queryStringChar != possibleStringChar) {
-                    // not a match, character discrepancy detected
-                    break;
-                }
-                if (i == queryString.length() - 1) {
-                    // end of query string reached, match detected
-                    match = true;
-                    break;
-                }
-            }
-            if (match) {
+            if (isPrefix(queryString, possibleString)) {
                 matchedStrings.add(possibleString);
             }
         }
         return matchedStrings;
+    }
+
+    private boolean isPrefix(String possiblePrefix, String targetString) {
+        for (int i = 0; i < possiblePrefix.length(); i++) {
+            char queryStringChar = possiblePrefix.charAt(i);
+            char possibleStringChar = targetString.charAt(i);
+            if (queryStringChar != possibleStringChar) {
+                // not a match, character discrepancy detected
+                break;
+            }
+            if (i == possiblePrefix.length() - 1) {
+                // end of query string reached, match detected
+                return true;
+            }
+        }
+        return false;
     }
 }
