@@ -16,8 +16,8 @@ public class AutoCompleteCommand {
      */
     @ShellMethod("Autocomplete given a query string and a set of all possible query strings.")
     public List<String> autocomplete(String queryString, List<String> possibleStrings) {
-        System.out.println("Query string: " + queryString);
-        System.out.println("Possible strings: " + possibleStrings);
+//        System.out.println("Query string: " + queryString);
+//        System.out.println("Possible strings: " + possibleStrings);
 
         List<String> matchedStrings = new ArrayList<>();
 
