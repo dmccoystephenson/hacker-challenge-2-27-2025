@@ -6,16 +6,7 @@ import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
 
 @ShellComponent
-public class MyCommands {
-
-    /**
-     * Example command to get the hang of how this works
-     * @return "Hello!"
-     */
-    @ShellMethod("Say hello")
-    public String hello() {
-        return "Hello!";
-    }
+public class AutoCompleteCommand {
 
     /**
      * Given a query string and a set of all possible query strngs, return all strings in the set that have the query strng as a prefix.
